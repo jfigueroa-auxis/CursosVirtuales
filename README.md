@@ -1,2 +1,2 @@
-# MateriasVirtuales
+# CursosVirtuales
 Plataforma de educación virtual 

@@ -1,0 +1,54 @@
+<app-contenedor>
+  <div slot="izquierda">
+    <a class="ml-3 text-dark font-weight-lighter" routerLink="/administrador/profesores">
+      <svg class="bg-white justify-content-start" width="2em" height="3em" viewBox="0 0 15 15" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              d="M5.854 4.646a.5.5 0 010 .708L3.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
+              clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M2.5 8a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+  <h3 class="text-dark font-weight-lighter">{{ ModoConsulta ? 'Cursos del profesor' : 'Mis Cursos' }}</h3>
+  <app-alertas #alertas></app-alertas>
+  <app-panel-comun class="" Titulo="Cursos" [MostrarBoton]="!ModoConsulta" (OnClick)="NuevaMateria()">
+    <table class="table">
+      <thead class="table table-borderless ">
+        <tr>
+          <th>Nombre</th>
+          <th>Publicado</th>
+          <th>Suspendido</th>
+          <th>Detalle</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let materia of materias">
+          <td>
+            {{materia.Nombre}}
+          </td>
+          <td>
+            <span placement="bottom" ngbTooltip="Indica si tu curso es visible para los estudiantes" [openDelay]="1000">{{ materia.Publicada ? 'Si' : 'No' }}</span>
+          </td>
+          <td>
+            <span placement="bottom" ngbTooltip="Indica si un administrador ha suspendido tu curso" [openDelay]="1000">{{ materia.Suspendida ? 'Si' : 'No' }}</span>
+          </td>
+          <td>
+            <svg (click)="verDetalle(materia)" class="text-third" width="28px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 8a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+              <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" clip-rule="evenodd" />
+            </svg>
+          </td>
+          <td>
+            <svg *ngIf="!materia.Publicada && !ModoConsulta" (click)="BorrarMateria(materia)" class="bi bi-trash text-third" width="28px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z" />
+              <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </app-panel-comun>
+</app-contenedor>
+

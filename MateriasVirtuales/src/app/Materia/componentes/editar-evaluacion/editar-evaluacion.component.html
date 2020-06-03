@@ -1,0 +1,20 @@
+<div class="bg-fourth py-3 px-3">
+  <h5 class="card-title text-dark font-weight-lighter" style="text-align: center;">Formulario de Preguntas</h5>
+  <div  *ngFor="let pregunta of Evaluacion.Preguntas; let i = index"> 
+    <label for="preguntas"></label>
+    <h6 class=" mb-2 text-muted" style="text-align: center;">Pregunta {{ i + 1 }}</h6>
+    <input  class=" form-control" id="preguntas"  type="text"  placeholder="Ingresar la pregunta" [(ngModel)]="pregunta.Texto" /><br />
+    <h6 class=" mb-2 text-muted" style="text-align: center;">Respuestas</h6>
+    
+    <div *ngFor="let respuesta of pregunta.Respuestas">
+        <div class="input-group mb-1">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input  type="checkbox"  [(ngModel)]="respuesta.EsCorrecta" />
+            </div>
+          </div>
+          <input  type="text" class="form-control" [(ngModel)]="respuesta.Texto"/>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<app-contenedor>
+  <ng-template appHostDinamico></ng-template>
+  <div slot="derecha" class="pt-4 text-secondary sticky-top">
+    <nav>
+      <ul style="list-style: none;">
+        <li class="" *ngFor="let tema of Temas">
+          <strong>
+            <a>{{ tema.Nombre }}</a>
+          </strong>
+          <ul>
+            <li *ngFor="let act of tema.Actividades">
+              <button type="button" class="btn btn-link p-0 text-secondary" [ngClass]="{'font-weight-bold' : act.Numero == NumActividadActual}" [disabled]="act.Numero > UltimaActividad" (click)="irAEstaActividad(act.Numero)">{{ act.Nombre }}</button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</app-contenedor>

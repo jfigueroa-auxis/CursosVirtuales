@@ -1,0 +1,42 @@
+<app-contenedor>
+  <div slot="izquierda">
+    <a class="ml-3 text-dark font-weight-lighter" appVolver>
+      <svg class="bg-white justify-content-start" width="2em" height="3em" viewBox="0 0 15 15" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              d="M5.854 4.646a.5.5 0 010 .708L3.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
+              clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M2.5 8a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+  <h3 class="text-dark font-weight-lighter">Registrar Profesor</h3>
+  <app-panel-comun Titulo="Formulario de Registro">
+    <form [formGroup]="formulario" (ngSubmit)="registrar()">
+      <div class="form-row">
+        <div class="form-group col">
+          <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres" [ngClass]="{ 'is-invalid': nombres.touched && nombres.errors && nombres.errors.required }" />
+        </div>
+        <div class="form-group col">
+          <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos" [ngClass]="{ 'is-invalid': apellidos.touched && apellidos.errors && apellidos.errors.required }" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <input type="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': email.touched && email.errors && (email.errors.required || email.errors.email) }" />
+          <div *ngIf="email.errors && email.errors.email" class="invalid-feedback">
+            No es un email válido
+          </div>
+        </div>
+        <div class="form-group col">
+          <input type="text" class="form-control" placeholder="Teléfono" formControlName="telefono" [ngClass]="{ 'is-invalid': telefono.touched && telefono.errors && telefono.errors.required }" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary float-right" [disabled]="!formulario.valid">
+        <span *ngIf="registroEnProceso" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="ml-2">{{ registroEnProceso ? 'Por favor espera' : 'Registrar' }}</span>
+      </button>
+    </form>
+  </app-panel-comun>
+  <app-alertas #alertas></app-alertas>
+</app-contenedor>

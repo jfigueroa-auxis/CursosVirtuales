@@ -1,0 +1,77 @@
+<app-contenedor>
+  <div slot="izquierda">
+    <a class="ml-3 text-dark font-weight-lighter" routerLink="/profesor/mismaterias">
+      <svg class="bg-white justify-content-start" width="2em" height="3em" viewBox="0 0 15 15" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              d="M5.854 4.646a.5.5 0 010 .708L3.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
+              clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M2.5 8a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+  <button class="btn btn-secondary float-right" *ngIf="!Materia.Publicada" type="button" (click)="Publicar()">Publicar</button>
+  <h3 class="text-dark font-weight-lighter">Informacion Básica</h3>
+  <hr />
+  <app-panel-comun class="" [Titulo]="Materia.Nombre">
+    <div class="form-group">
+      <label for="nombreMateria">Nombre:</label>
+      <input class="form-control" type="text" [(ngModel)]="Materia.Nombre" placeholder="Nombre" id="nombreMateria">
+    </div>
+    <div class="form-group">
+      <label for="nombreMateria">Descripción:</label>
+      <textarea class="form-control" [(ngModel)]="Materia.Descripcion" rows="6" cols="20" placeholder="Descripción del curso" id="descripcion">
+        </textarea>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="limiteDias">Limite de días:</label>
+        <input id="limiteDias" type="number" class="form-control" [(ngModel)]="Materia.LimiteDias" placeholder="Plazo maximo para completar el curso" />
+      </div>
+      <div class="col">
+        <label for="costo">Costo:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input id="costo" type="number" class="form-control" [(ngModel)]="Materia.Costo" placeholder="Costo del curso" />
+        </div>
+      </div>
+    </div>
+    <app-video-upload [VideoId]="Materia.VideoId" (VideoCargado)="VideoCargado($event)" (VideoEliminado)="VideoEliminado()">
+    </app-video-upload>
+    <button class="btn btn-primary mt-3 float-right" type="button" (click)="Guardar()">Guardar</button>
+  </app-panel-comun>
+  <app-alertas #alertasCmp></app-alertas>
+  <hr />
+  <h3 class="text-dark font-weight-lighter">Temas</h3>
+  <div class="row">
+    <div class="col-4" style="max-height: 500px; overflow-y: auto">
+      <div class="list-group" role="tablist">
+        <a class="list-group-item list-group-item-action bg-fourth" *ngFor="let tema of Materia.Temas; let i = index" (click)="seleccionarTema(tema)">
+          {{ tema.Nombre }}
+        </a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" *ngIf="Tema">
+        <div class="card-header bg-secondary text-fourth" style="text-align: center;">
+          <input class="form-control mb-1  mt-2" placeholder="Nombre del Tema" type="text" [(ngModel)]="Tema.Nombre" />
+        </div>
+        <div class="card-body bg-fourth" style="max-height: 425px; overflow-y: auto">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-fourth" *ngFor="let leccion of Tema.Lecciones">
+              <button type="button" (click)="verLeccion(leccion)" class="btn btn-link">
+                leccion:
+                {{ leccion.Titulo }}
+              </button>
+            </li>
+            <li class="list-group-item bg-fourth">
+              <button type="button" (click)="verEvaluacion(Tema.Parcial)" class="btn btn-link">Prueba</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-contenedor>

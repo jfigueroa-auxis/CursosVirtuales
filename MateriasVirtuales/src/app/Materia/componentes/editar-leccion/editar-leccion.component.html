@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-body bg-fourth">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs nav-pills nav-fill">
+      <li class="nav-item" ngbNavItem>
+        <a class="nav-link active" ngbNavLink>Lección</a>
+        <ng-template ngbNavContent>
+          <br />
+          <div class="form-group">
+            <label for="titulo">Titulo de la lección</label>
+            <input class="form-control" type="text" placeholder="Titulo de la lección:" [(ngModel)]="Leccion.Titulo" id="titulo"/>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" rows="5" cols="50" class="form-control" placeholder="Descripcion" [(ngModel)]="Leccion.Descripcion"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="objetivo">Objetivos:</label>
+            <textarea id="objetivo" class="form-control" rows="5" cols="50" placeholder="Objetivos de la leccion" [(ngModel)]="Leccion.Objetivos"></textarea>
+          </div>
+          <app-video-upload [VideoId]="Leccion.VideoId" (VideoCargado)="videoCargado($event)" (VideoEliminado)="videoEliminado()"></app-video-upload>
+        </ng-template>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink>Documentos Adjuntos</a>
+        <ng-template ngbNavContent>
+          <div class="custom-file mt-4">
+            <input class="custom-file-input" id="customFileLang" lang="es" type="file" (change)="cargarAdjunto($event.target.files)" #fileInput />
+            <label for="customFileLang" class="custom-file-label">Adjuntar documentos</label>
+          </div>
+          <p class="mt-3"><ngb-progressbar [showValue]="true" type="success" [value]="ProgresoDeCarga | async" *ngIf="CargaEnProceso"></ngb-progressbar></p>
+          <table class="table table-striped ">
+            <thead class="table-borderless">
+              <tr>
+                <th>Nombre</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let documento of Leccion.DocumentosAdjuntos">
+                <td>
+                  <a class="btn btn-link" (click)="descargar(documento)">{{ documento.Nombre }}</a>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-secondary" (click)="eliminarAdjunto(documento.DocumentoId)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink>Prueba</a>
+        <ng-template ngbNavContent>
+          <div class=" mt-3" id="EvaluacionesAcord">
+            <app-editar-evaluacion [Evaluacion]="Leccion.Quiz"></app-editar-evaluacion>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+  </div>
+</div>

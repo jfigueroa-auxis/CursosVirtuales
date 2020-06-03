@@ -1,0 +1,45 @@
+<nav class="navbar navbar-light border-bottom d-flex justify-content-center bg-primary" style="height: 70px;">
+  <h5 class=" text-white p-2 sticky-top" href="#">Autenticación</h5>
+</nav>
+<div class="col-12 d-flex justify-content-center mt-4">
+  <div class="form-group col-4 shadow p-3 mb-5 bg-white rounded border border-primary">
+    <div class="d-flex">
+      <svg class="bi bi-pencil text-primary pl-3" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd" />
+      </svg>
+      <h4 class="text-third pl-5 pt-2">
+        <strong>
+          Ingreso
+          <br>a Cursos Virtuales
+        </strong>
+      </h4>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="ingresar()">
+      <div class="form-group mt-4">
+        <input type="text" class="form-control is-invalid" [ngClass]="{ 'is-invalid': email.touched && email.errors && (email.errors.required || email.errors.email) }" id="correo" placeholder="Email" formControlName="email" required />
+        <div *ngIf="email.errors && email.errors.email" class="invalid-feedback">
+          No es un email válido
+        </div>
+      </div>
+      <div class="form-group mt-1">
+        <input type="password" class="form-control" id="clave" [ngClass]="{ 'is-invalid': password.touched && password.errors && password.errors.required }" placeholder="Contraseña" formControlName="password" autocomplete="on" required />
+      </div>
+      <app-alertas #alertas></app-alertas>
+      <div class="alert alert-info" role="alert" *ngIf="CorreoSinConfirmar">
+        No se ha verificado tu correo electrónico. <a (click)="enviarMailVerificacion()" class="alert-link" style="cursor: pointer" >Haz click aquí para recibir el email de verificacion</a>.
+      </div>
+      <div class="form-group mt-5 ">
+        <button type="submit" class="btn btn-outline-primary btn-block" [disabled]="!loginForm.valid">
+          Ingresar
+        </button>
+      </div>
+    </form>
+    <a routerLink="/reestablecer-clave" class="small d-flex justify-content-center" style="color: rgba(177, 31, 22, 0.5);">Olvidé mi contraseña</a>
+    <div class="form-group mt-4 ">
+      <a class="btn btn-third btn-block" routerLink="/registro">
+        Registrarse
+      </a>
+    </div>
+  </div>
+</div>

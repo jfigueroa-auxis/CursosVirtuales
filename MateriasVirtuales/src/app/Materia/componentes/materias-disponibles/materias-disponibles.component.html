@@ -1,0 +1,10 @@
+<app-contenedor>
+  <h3 class="text-dark font-weight-lighter">Cursos Disponibles</h3>
+  <hr />
+  <div class="row">
+    <div class="col-4" *ngFor="let materia of Materias">
+      <app-materia-disponible [Materia]="materia"></app-materia-disponible>
+    </div>
+  </div>
+</app-contenedor>
+

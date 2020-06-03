@@ -1,0 +1,42 @@
+$primary:#636f07;
+$secondary:#acaa00;
+$third: #b11f16;
+$fourth: #f9f5ea;
+$theme-colors: (
+    "third": $third,
+    "fourth": $fourth
+);
+$custom-file-text: (
+  en: "Browse",
+  es: "Elegir"
+);
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $fourth;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $secondary;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary;
+}
+
+.card-link{
+    cursor: pointer
+}
+
+//$success:#b11f16;
+//$info: #1a171b;
+//$warning:#F9F5EA;
+//$danger:rgba(249, 245, 234, 0.83);
+
+@import "../node_modules/bootstrap/scss/bootstrap"; 

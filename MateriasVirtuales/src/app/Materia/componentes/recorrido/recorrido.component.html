@@ -1,0 +1,31 @@
+<app-contenedor>
+  <div slot="izquierda">
+    <a class="ml-3 text-dark font-weight-lighter" [routerLink]="['/materia/detalle', MateriaId]">
+      <svg class="bg-white justify-content-start" width="2em" height="3em" viewBox="0 0 15 15" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              d="M5.854 4.646a.5.5 0 010 .708L3.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
+              clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M2.5 8a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+  <ng-template appHostDinamico></ng-template>
+  <div slot="derecha" class="pt-4 text-secondary sticky-top">
+    <nav>
+    <ul style="list-style: none;">
+      <li class="" *ngFor="let tema of Temas">
+        <strong>
+          <a>{{ tema.Nombre }}</a>
+        </strong>
+        <ul>
+          <li *ngFor="let act of tema.Actividades">
+            <a class="card-link text-secondary" [ngClass]="{'font-weight-bold' : act.Numero == NumActividadActual}" (click)="irAEstaActividad(act.Numero)">{{ act.Nombre }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  </div>
+</app-contenedor>
+

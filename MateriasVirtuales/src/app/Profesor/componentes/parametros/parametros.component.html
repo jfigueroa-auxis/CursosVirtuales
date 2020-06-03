@@ -1,0 +1,40 @@
+<app-contenedor>
+  <h3 class="text-dark font-weight-lighter ">Parámetros</h3>
+  <app-panel-comun>
+    <div *ngIf="Parametros">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="TemasMateria">Temas por Curso:</label>
+            <input type="number" class="form-control" id="TemasMateria" [(ngModel)]="Parametros.TemasPorMateria" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="PreguntaParcial">Preguntas por prueba:</label>
+            <input type="number" class="form-control" id="PreguntaParcial" [(ngModel)]="Parametros.PreguntasPorParcial" />
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="LeccionesTema">Lecciones por tema:</label>
+            <input type="number" class="form-control" id="LeccionesTema" [(ngModel)]="Parametros.LeccionesPorTema" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="PreguntaQuiz">Preguntas por prueba:</label>
+            <input type="number" class="form-control" id="PreguntaQuiz" [(ngModel)]="Parametros.PreguntasPorQuiz" />
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary float-right" (click)="guardar()">
+        Guardar
+      </button>
+    </div>
+  </app-panel-comun>
+  <app-alertas #alertasCmp></app-alertas>
+</app-contenedor>

@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light border-bottom d-flex justify-content-center bg-primary" style="height: 70px;">
+  <h5 class=" text-white p-2 sticky-top" href="#"></h5>
+</nav>
+<div class="col-12 d-flex justify-content-center mt-4">
+  <div class="alert" [ngClass]="Clase" role="alert">
+    <h4 class="alert-heading">Registro Exitoso!</h4>
+    <p>{{ Mensaje }}</p>
+    <hr />
+    <a class="btn btn-link" routerLink="/login">Ir a autenticación</a>
+  </div>
+</div>

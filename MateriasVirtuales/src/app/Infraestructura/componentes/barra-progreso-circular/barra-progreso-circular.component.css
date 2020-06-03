@@ -1,0 +1,19 @@
+.chart {
+  position: relative;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.label-indicator {
+  color: #555;
+  display: block;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 100;
+  margin-left: 5px;
+}

@@ -1,0 +1,10 @@
+<div class="card bg-fourth my-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ _Materia.Nombre }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted" *ngIf="Profesor">{{ Profesor.Nombres }} {{ Profesor.Apellidos }}</h6>
+    <p class="card-text">
+      {{ _Materia.Descripcion | acortarTexto: 150 }}
+    </p>
+    <a class="card-link text-primary"  (click)="MasInformacion()">Más Información</a>
+  </div>
+</div>
